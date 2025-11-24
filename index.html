@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AURA PRIVÉE - Perfumes de luxo. Sua essência elevada ao mais alto padrão.">
+    <meta name="description" content="AURA PRIVÉE - Perfumes de luxo importados. Sua essência elevada ao mais alto padrão.">
     <title>AURA PRIVÉE - Perfumes de Luxo</title>
     <style>
         * {
@@ -11,305 +11,685 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --gold: #d4af37;
+            --gold-soft: rgba(212, 175, 55, 0.2);
+            --bg-dark: #050506;
+            --bg-card: #101015;
+            --text-main: #f5f5f5;
+            --text-muted: #b8b8c2;
+        }
+
         body {
-            font-family: 'Cormorant Garamond', 'Georgia', serif;
-            background: #000;
-            color: #fff;
+            font-family: "Cormorant Garamond", "Georgia", serif;
+            background: radial-gradient(circle at top, #111019 0%, #050506 60%, #000 100%);
+            color: var(--text-main);
             line-height: 1.6;
         }
-        
+
+        a {
+            color: inherit;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        header {
+
+        /* HERO COM AURA */
+
+        header.hero {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
             position: relative;
             overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
-            color: #d4af37;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            color: #ccc;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cta-buttons {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
-            position: relative;
-            z-index: 1;
+            text-align: center;
+            color: var(--text-main);
         }
-        
+
+        /* fundo com a sua imagem (vamos trocar a URL depois que subir no GitHub) */
+        header.hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.95) 45%, #000 80%),
+                url("IMG_20251124_093330_0.jpg") center/cover no-repeat;
+            filter: saturate(1.1);
+            opacity: 0.9;
+            z-index: -2;
+        }
+
+        /* leve névoa dourada por cima */
+        header.hero::after {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.35) 0%, transparent 55%),
+                radial-gradient(circle at 0% 80%, rgba(212, 175, 55, 0.20) 0%, transparent 55%),
+                radial-gradient(circle at 100% 80%, rgba(212, 175, 55, 0.20) 0%, transparent 55%);
+            mix-blend-mode: screen;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-inner {
+            position: relative;
+            padding: 80px 20px 120px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            background: rgba(0, 0, 0, 0.65);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--gold);
+        }
+
+        .logo-text {
+            font-size: 3.6rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 300;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-copy {
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .hero-copy span {
+            color: var(--gold);
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .btn {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 14px 36px;
+            border-radius: 999px;
             text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            border: 2px solid;
+            transition: all 0.25s ease;
+            border: 1px solid;
             font-weight: 500;
         }
-        
+
         .btn-primary {
-            background: #d4af37;
-            color: #000;
-            border-color: #d4af37;
+            background: linear-gradient(120deg, #f1d27a, var(--gold));
+            color: #231700;
+            border-color: #f1d27a;
+            box-shadow: 0 0 24px rgba(212, 175, 55, 0.55);
         }
-        
+
         .btn-primary:hover {
             background: transparent;
-            color: #d4af37;
+            color: var(--gold);
+            box-shadow: 0 0 32px rgba(212, 175, 55, 0.8);
         }
-        
+
         .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border-color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.5);
         }
-        
+
         .btn-secondary:hover {
             background: #fff;
             color: #000;
         }
-        
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* SEÇÕES GERAIS */
+
         section {
             padding: 80px 20px;
+            position: relative;
         }
-        
+
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(212, 175, 55, 0.08) 0%, transparent 55%);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             text-align: center;
-            margin-bottom: 3rem;
-            color: #d4af37;
-            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             font-weight: 300;
         }
-        
-        .collection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .product-card {
-            background: #111;
-            border: 1px solid #333;
-            padding: 2rem;
+
+        .section-subtitle {
             text-align: center;
-            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 520px;
+            margin: 0 auto 3rem;
         }
-        
-        .product-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-5px);
+
+        /* POR QUE AURA PRIVÉE */
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
-        
+
+        .why-card {
+            background: radial-gradient(circle at top, rgba(212, 175, 55, 0.18) 0%, var(--bg-card) 52%);
+            border-radius: 18px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.7);
+        }
+
+        .why-title {
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+
+        .why-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* COLEÇÃO */
+
+        .collection-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+        }
+
+        .collection-block-title {
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: radial-gradient(circle at top, rgba(212, 175, 55, 0.06) 0%, #050509 55%);
+            border-radius: 20px;
+            padding: 1.6rem 1.6rem 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .product-card.highlight {
+            border-color: rgba(212, 175, 55, 0.7);
+            box-shadow: 0 0 36px rgba(212, 175, 55, 0.42);
+        }
+
         .product-image {
             width: 100%;
-            height: 300px;
-            background: #222;
-            margin-bottom: 1.5rem;
+            height: 260px;
+            border-radius: 16px;
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08) 0%, #0a0a0f 60%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 0.9rem;
+            overflow: hidden;
+            margin-bottom: 0.4rem;
         }
-        
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
         .product-name {
-            font-size: 1.5rem;
-            color: #d4af37;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .product-price {
             font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
         }
-        
-        .product-description {
-            font-size: 0.95rem;
-            color: #aaa;
-            line-height: 1.6;
+
+        .product-tagline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
-        
-        .about-content {
-            max-width: 800px;
+
+        .product-notes {
+            font-size: 0.92rem;
+            color: var(--text-main);
+        }
+
+        .product-price-detail {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .product-btn {
+            margin-top: 0.6rem;
+            align-self: flex-start;
+            padding-inline: 22px;
+            font-size: 0.8rem;
+        }
+
+        /* CONTATO */
+
+        .contact-wrapper {
+            max-width: 640px;
             margin: 0 auto;
             text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ccc;
         }
-        
-        .contact-info {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+
+        .contact-text {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
         }
-        
-        .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #ccc;
-        }
-        
-        .social-links {
+
+        .contact-links {
             display: flex;
-            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 1rem;
         }
-        
+
+        /* RODAPÉ */
+
         footer {
-            background: #000;
-            border-top: 1px solid #333;
-            padding: 2rem 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.8rem 20px;
             text-align: center;
-            color: #666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: #808089;
+            background: #020203;
         }
-        
+
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-                letter-spacing: 0.2em;
+            .logo-text {
+                font-size: 2.4rem;
+                letter-spacing: 0.24em;
             }
-            
-            .tagline {
-                font-size: 1rem;
+
+            .hero-subtitle {
+                font-size: 0.9rem;
             }
-            
-            .section-title {
-                font-size: 2rem;
+
+            .hero-copy {
+                font-size: 0.95rem;
             }
-            
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .btn {
-                width: 100%;
+
+            section {
+                padding: 64px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <header>
-        <h1 class="logo">AURA PRIVÉE</h1>
-        <p class="tagline">Sua essência elevada ao mais alto padrão</p>
-        <div class="cta-buttons">
-            <!-- TROCAR PELO SEU NÚMERO E INSTAGRAM -->
-            <a href="https://wa.me/5511999999999" class="btn btn-primary" target="_blank">WhatsApp</a>
-            <a href="https://instagram.com/auraprivee" class="btn btn-secondary" target="_blank">Instagram</a>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-inner container">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Perfumes importados & árabes selecionados
+            </div>
+            <h1 class="logo-text">AURA PRIVÉE</h1>
+            <p class="hero-subtitle">Sua essência elevada ao mais alto padrão</p>
+            <p class="hero-copy">
+                Uma curadoria de <span>perfumes de luxo</span> que combinam alta fixação, projeção marcante
+                e exclusividade. Cada frasco é escolhido para traduzir presença, elegância e personalidade
+                em qualquer ocasião.
+            </p>
+            <div class="hero-cta">
+                <a href="https://wa.me/5585984486180?text=Quero%20conhecer%20os%20perfumes%20da%20AURA%20PRIV%C3%89E" class="btn btn-primary" target="_blank">
+                    Falar no WhatsApp
+                </a>
+                <a href="https://instagram.com/aura_privee_perfumaria" class="btn btn-secondary" target="_blank">
+                    Ver no Instagram
+                </a>
+            </div>
+            <p class="hero-note">
+                Atendimento personalizado, envio para todo o Brasil e perfumes com excelente custo-benefício.
+            </p>
         </div>
     </header>
 
-    <!-- Collection Section -->
+    <!-- POR QUE AURA PRIVÉE -->
+    <section id="porque">
+        <div class="container">
+            <h2 class="section-title">Por que escolher a Aura Privée</h2>
+            <p class="section-subtitle">
+                Mais do que vender perfumes, nossa missão é ajudar você a encontrar a fragrância
+                que combina com a sua história, seu estilo e seus momentos especiais.
+            </p>
+
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3 class="why-title">Curadoria de Luxo</h3>
+                    <p class="why-text">
+                        Trabalhamos com uma seleção criteriosa de perfumes árabes e importados
+                        que entregam desempenho, originalidade e presença. Nada genérico – apenas
+                        fragrâncias que realmente se destacam.
+                    </p>
+                </div>
+                <div class="why-card">
+                    <h3 class="why-title">Fixação & Projeção Marcantes</h3>
+                    <p class="why-text">
+                        Nossos perfumes são conhecidos por ficar na pele por horas e deixar
+                        um rastro inesquecível. Ideal para quem não abre mão de ser notado
+                        por onde passa.
+                    </p>
+                </div>
+                <div class="why-card">
+                    <h3 class="why-title">Atendimento Personalizado</h3>
+                    <p class="why-text">
+                        Pelo WhatsApp, ajudamos você a escolher o perfume ideal para o seu gosto,
+                        ocasião e clima. Indicações sinceras, explicadas de forma simples, para
+                        você comprar com segurança.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLEÇÃO -->
     <section id="colecao">
         <div class="container">
             <h2 class="section-title">Nossa Coleção</h2>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <div class="product-image">Khamrah</div>
-                    <h3 class="product-name">Khamrah</h3>
-                    <p class="product-price">R$ 350,00</p>
-                    <p class="product-description">Fragrância oriental intensa com notas de especiarias e âmbar.</p>
+            <p class="section-subtitle">
+                Perfumes masculinos, femininos e unissex que unem performance, elegância e personalidade.
+                Valores podem variar conforme o dólar – consulte sempre pelo WhatsApp.
+            </p>
+
+            <div class="collection-wrapper">
+                <!-- MASCULINOS -->
+                <div>
+                    <h3 class="collection-block-title">Masculinos</h3>
+                    <div class="product-grid">
+                        <!-- ASAD -->
+                        <div class="product-card highlight">
+                            <div class="product-image">
+                                <img src="Asad-Lattafa-Eau-De-Parfum-Masculino.webp" alt="Asad Lattafa Eau de Parfum Masculino">
+                            </div>
+                            <h4 class="product-name">Asad - Lattafa</h4>
+                            <p class="product-tagline">Oriental amadeirado e especiado, intenso e imponente.</p>
+                            <p class="product-notes">
+                                Combina uma saída picante de pimenta preta, abacaxi e tabaco com um coração de café e patchouli,
+                                finalizando em uma base doce e quente de baunilha, âmbar, benjoim e madeiras secas. Ideal para noites
+                                marcantes e quem gosta de presença.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Asad%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- ASAD BOURBON -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="Asad-boubon-Lattafa-Eau-De-Parfum-Masculino.webp" alt="Asad Bourbon Lattafa Eau de Parfum Masculino">
+                            </div>
+                            <h4 class="product-name">Asad Bourbon - Lattafa</h4>
+                            <p class="product-tagline">Versão mais cremosa e envolvente do Asad clássico.</p>
+                            <p class="product-notes">
+                                Oriental especiado masculino lançado em 2025, com notas de topo de ameixa mirabelle, lavanda e pimenta rosa,
+                                coração de cacau, davana e noz-moscada, e base de baunilha bourbon, âmbar e vetiver. Sofisticado, intenso
+                                e perfeito para ocasiões especiais à noite.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Asad%20Bourbon%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- FAKHAR BLACK -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="Lattafa Fakhar Black Eau de Parfum - Perfume Masculino 100ml.webp" alt="Fakhar Black Lattafa Eau de Parfum Masculino">
+                            </div>
+                            <h4 class="product-name">Fakhar Black - Lattafa</h4>
+                            <p class="product-tagline">Âmbar amadeirado moderno, sofisticado e marcante.</p>
+                            <p class="product-notes">
+                                Traz maçã verde, lavanda e gengibre no topo, evoluindo para sálvia, zimbro e gerânio, e finalizando
+                                em um fundo de âmbar, fava tonka, cedro e almíscar. Excelente fixação e projeção, ideal para o homem
+                                que quer deixar uma impressão duradoura.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Fakhar%20Black%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- KHAMRAH -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="Khamrah lattafa masculino.webp" alt="Khamrah Lattafa Perfume Masculino">
+                            </div>
+                            <h4 class="product-name">Khamrah - Lattafa</h4>
+                            <p class="product-tagline">Oriental especiado adocicado, assinatura perfeita para noites frias.</p>
+                            <p class="product-notes">
+                                Une canela e noz-moscada na abertura com um coração de tâmaras e pralinê, sobre uma base rica
+                                de baunilha, fava tonka e madeiras. Alta fixação e projeção, ideal para climas frios e ocasiões noturnas
+                                em que você quer se destacar.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Khamrah%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- SALVO -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="Perfume Masculino Salvo Edp 100ml Maison Alhambra.webp" alt="Salvo Maison Alhambra Eau de Parfum Masculino">
+                            </div>
+                            <h4 class="product-name">Salvo - Maison Alhambra</h4>
+                            <p class="product-tagline">Cítrico, especiado e amadeirado – fresco com profundidade.</p>
+                            <p class="product-notes">
+                                Um Eau de Parfum masculino marcante, que combina frescor e intensidade. Cítrico na saída, com toques
+                                especiados e um fundo amadeirado sofisticado. Ideal tanto para o dia a dia quanto para ocasiões especiais,
+                                com ótima fixação e projeção.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Salvo%20Maison%20Alhambra" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="product-card">
-                    <div class="product-image">Asad</div>
-                    <h3 class="product-name">Asad</h3>
-                    <p class="product-price">R$ 380,00</p>
-                    <p class="product-description">Perfume amadeirado sofisticado com toque de couro nobre.</p>
+
+                <!-- FEMININOS -->
+                <div>
+                    <h3 class="collection-block-title">Femininos</h3>
+                    <div class="product-grid">
+                        <!-- CLUB DE NUIT WOMAN -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="club_de_nuit_woman_armaf_feminino_eau_de_parfum_105ml.webp" alt="Club de Nuit Woman Armaf Eau de Parfum Feminino">
+                            </div>
+                            <h4 class="product-name">Club de Nuit Woman - Armaf</h4>
+                            <p class="product-tagline">Floral frutado elegante, estilo Coco Mademoiselle.</p>
+                            <p class="product-notes">
+                                Perfume árabe feminino floral frutado, um contratipo muito elogiado do Coco Mademoiselle da Chanel.
+                                Combina notas cítricas e florais com um fundo sensual e marcante, perfeito para mulheres que gostam
+                                de deixar rastro de elegância por onde passam.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Club%20de%20Nuit%20Woman%20Armaf" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- FAKHAR ROSE -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="fakhar-rose-de-lattafa---perfume-feminino--rabe-100ml.webp" alt="Fakhar Rose Lattafa Perfume Feminino">
+                            </div>
+                            <h4 class="product-name">Fakhar Rose - Lattafa</h4>
+                            <p class="product-tagline">Floral frutado envolvente, romântico e sofisticado.</p>
+                            <p class="product-notes">
+                                Une líchia, pêssego e bergamota no topo a um coração de rosas, jasmim e peônia, sobre uma base
+                                cremosa de baunilha, sândalo, âmbar e almíscar branco. Feminino, sensual e com excelente fixação
+                                e projeção.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Fakhar%20Rose%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- SABAH AL WARD -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="Perfume Arabe Sabah Al Ward EDP 100ml Feminino.webp" alt="Sabah Al Ward Al Wataniah Perfume Feminino">
+                            </div>
+                            <h4 class="product-name">Sabah Al Ward - Al Wataniah</h4>
+                            <p class="product-tagline">Oriental floral misterioso e sedutor.</p>
+                            <p class="product-notes">
+                                Mistura pimenta rosa e mandarina na saída, um coração de cacau, flor de laranjeira e jasmim,
+                                e uma base rica de baunilha, fava tonka e patchouli. Ideal para mulheres que buscam sofisticação
+                                com um toque de mistério.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Sabah%20Al%20Ward" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="product-card">
-                    <div class="product-image">Club de Nuit Woman</div>
-                    <h3 class="product-name">Club de Nuit Woman</h3>
-                    <p class="product-price">R$ 320,00</p>
-                    <p class="product-description">Elegância feminina com notas florais e frutadas.</p>
+
+                <!-- UNISSEX -->
+                <div>
+                    <h3 class="collection-block-title">Unissex</h3>
+                    <div class="product-grid">
+                        <!-- FAKHAR GOLD -->
+                        <div class="product-card highlight">
+                            <div class="product-image">
+                                <img src="Fakhar Gold Extrait Lattafa Perfume Unissex Eau De Parfum 100ml.webp" alt="Fakhar Gold Extrait Lattafa Perfume Unissex">
+                            </div>
+                            <h4 class="product-name">Fakhar Gold Extrait - Lattafa</h4>
+                            <p class="product-tagline">Luxuoso e marcante, para quem gosta de presença absoluta.</p>
+                            <p class="product-notes">
+                                Abre com toranja, pimenta rosa e cardamomo, evolui para artemísia, notas solares e tuberosa,
+                                e descansa em uma base rica de cashmeran, âmbar, ládano e couro. Fragrância sofisticada,
+                                envolvente e duradoura, perfeita para quem gosta de se destacar.
+                            </p>
+                            <p class="product-price-detail">
+                                Valores podem variar conforme o dólar – consulte no WhatsApp.
+                            </p>
+                            <a href="https://wa.me/5585984486180?text=Tenho%20interesse%20no%20Fakhar%20Gold%20Extrait%20Lattafa" class="btn btn-primary product-btn" target="_blank">
+                                Consultar valor no WhatsApp
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="sobre" style="background: #0a0a0a;">
-        <div class="container">
-            <h2 class="section-title">Sobre a AURA PRIVÉE</h2>
-            <div class="about-content">
-                <p>A AURA PRIVÉE nasceu da paixão por fragrâncias exclusivas e da busca incessante pela excelência. Cada perfume da nossa coleção é cuidadosamente selecionado para proporcionar uma experiência olfativa única e memorável.</p>
-                <p style="margin-top: 1.5rem;">Trabalhamos apenas com as melhores marcas e fragrâncias do mercado, garantindo autenticidade, qualidade e sofisticação em cada frasco.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- CONTATO -->
     <section id="contato">
         <div class="container">
-            <h2 class="section-title">Contato</h2>
-            <div class="contact-info">
-                <p>Entre em contato conosco pelo WhatsApp ou Instagram para conhecer nossa coleção completa e fazer seu pedido.</p>
-                <div class="social-links">
-                    <a href="https://wa.me/5511999999999" class="btn btn-primary" target="_blank">WhatsApp</a>
-                    <a href="https://instagram.com/auraprivee" class="btn btn-secondary" target="_blank">Instagram</a>
+            <h2 class="section-title">Atendimento Exclusivo</h2>
+            <p class="section-subtitle">
+                Tire dúvidas, peça indicações personalizadas e faça seu pedido diretamente pelo WhatsApp.
+                Respostas claras, sinceras e com foco em encontrar o perfume certo para você.
+            </p>
+            <div class="contact-wrapper">
+                <p class="contact-text">
+                    Clique abaixo para falar diretamente conosco no WhatsApp ou acompanhar novidades, lançamentos
+                    e conteúdos sobre perfumes no Instagram.
+                </p>
+                <div class="contact-links">
+                    <a href="https://wa.me/5585984486180?text=Quero%20um%20atendimento%20personalizado%20da%20AURA%20PRIV%C3%89E" class="btn btn-primary" target="_blank">
+                        Falar no WhatsApp
+                    </a>
+                    <a href="https://instagram.com/aura_privee_perfumaria" class="btn btn-secondary" target="_blank">
+                        Seguir no Instagram
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- RODAPÉ -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 AURA PRIVÉE. Todos os direitos reservados.</p>
+            &copy; 2024 AURA PRIVÉE. Todos os direitos reservados.
         </div>
     </footer>
 </body>
